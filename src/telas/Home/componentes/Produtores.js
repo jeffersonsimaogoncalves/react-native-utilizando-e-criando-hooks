@@ -23,9 +23,6 @@ export default function Produtores({topo: Topo}) {
       </>
     );
   };
-  const ItemLista = ({item: {nome}}) => {
-    return <Text>{nome}</Text>;
-  };
 
   return (
     <FlatList
