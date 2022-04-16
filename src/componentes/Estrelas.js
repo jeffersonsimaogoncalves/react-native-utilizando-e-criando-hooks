@@ -1,7 +1,6 @@
 import React, {useState} from 'react';
-import {Image, StyleSheet, TouchableOpacity, View} from 'react-native';
-import estrela from '../assets/estrela.png';
-import estrelaCinza from '../assets/estrelaCinza.png';
+import {StyleSheet, View} from 'react-native';
+import Estrela from './Estrela';
 
 export default function Estrelas({
   quantidade: quantidadeAntiga,
@@ -9,23 +8,17 @@ export default function Estrelas({
   grande = false,
 }) {
   const [quantidade, setQuantidade] = useState(quantidadeAntiga);
-  const styleEstrelas = styleEstrelasFunction(grande);
-  const getImage = index => {
-    if (index < quantidade) {
-      return estrela;
-    }
-    return estrelaCinza;
-  };
   const RenderEstrelas = () => {
     const listaEstrela = [];
     for (let i = 0; i < 5; i++) {
       listaEstrela.push(
-        <TouchableOpacity
+        <Estrela
           key={i}
           onPress={() => setQuantidade(i + 1)}
-          disabled={!editavel}>
-          <Image style={styleEstrelas.estrela} source={getImage(i)} />
-        </TouchableOpacity>,
+          desabilitada={!editavel}
+          preenchida={i < quantidade}
+          grande={grande}
+        />,
       );
     }
     return listaEstrela;
@@ -37,14 +30,8 @@ export default function Estrelas({
   );
 }
 
-const styleEstrelasFunction = grande =>
-  StyleSheet.create({
-    estrelas: {
-      flexDirection: 'row',
-    },
-    estrela: {
-      width: grande ? 36 : 12,
-      height: grande ? 36 : 12,
-      marginRight: 2,
-    },
-  });
+const styleEstrelas = StyleSheet.create({
+  estrelas: {
+    flexDirection: 'row',
+  },
+});
