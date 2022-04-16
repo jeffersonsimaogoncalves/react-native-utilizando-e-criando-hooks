@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import {FlatList, StyleSheet, Text} from 'react-native';
 import {carregaProdutores} from '../../../servicos/carregaDados';
+import Produtor from './Produtor';
 
 export default function Produtores({topo: Topo}) {
   const [titulo, setTitulo] = useState('');
@@ -29,7 +30,7 @@ export default function Produtores({topo: Topo}) {
   return (
     <FlatList
       data={lista}
-      renderItem={ItemLista}
+      renderItem={({item}) => <Produtor {...item} />}
       ListHeaderComponent={TopoLista}
       keyExtractor={({nome}) => nome}
     />
