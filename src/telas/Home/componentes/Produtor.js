@@ -3,9 +3,7 @@ import {Image, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import Estrelas from '../../../componentes/Estrelas';
 
 export default function Produtor({nome, imagem, distancia, estrelas}) {
-  const [selecionado, inverterSelecionado] = useReducer(state => {
-    return !state;
-  }, false);
+  const [selecionado, inverterSelecionado] = useReducer(state => !state, false);
   return (
     <TouchableOpacity
       style={styleProdutor.cartao}
